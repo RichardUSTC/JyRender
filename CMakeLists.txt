@@ -32,7 +32,10 @@ set(COMMON_HEADERS
     <cstdint>
     <functional>
     <type_traits>
+    <Log/Log.h>
 )
+
+include(CMake/ExternalProjects.cmake)
 
 add_subdirectory(Engine)
 add_subdirectory(Game)

@@ -1,30 +1,17 @@
-set(HEADERS
-)
-
-set(SOURCES
-	Engine.cpp
-)
-
-source_group(Engine FILES ${HEADERS} ${SOURCES})
-
 add_library(Engine
-	${HEADERS}
-	${SOURCES}
+	Engine.cpp
 )
 
 add_subdirectory(Common)
 add_subdirectory(Application)
-
-target_precompile_headers(Engine
-	PRIVATE ${COMMON_HEADERS}
-)
+add_subdirectory(Log)
 
 target_link_libraries(Engine
 	Common
 	Application
+	Log
 )
 
 target_include_directories(Engine
-	PUBLIC
-	${CMAKE_CURRENT_SOURCE_DIR}
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )

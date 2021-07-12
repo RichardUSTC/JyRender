@@ -1,5 +1,8 @@
 #include "Application.h"
+#include "Common/Time.h"
+#include "Log/Log.h"
 #include <cassert>
+#include <csignal>
 
 Application* Application::sInstance = nullptr;
 
@@ -25,9 +28,14 @@ void Application::Init(const ApplicationConfig& config)
 
 void Application::Loop()
 {
+    const Duration frameDuration = FrameDuration(mLogicFrameRate);
     while (mRunning)
     {
+        TimePoint now = GetNow();
         if (mOnUpdateCallback)
             mOnUpdateCallback();
+
+        SleepUntil(now + frameDuration);
+        mFrameCount++;
     }
 }

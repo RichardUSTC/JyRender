@@ -1,5 +1,6 @@
 #include <cstdio>
 #include "Application/Application.h"
+#include "Log/Log.h"
 
 int main()
 {
@@ -12,16 +13,16 @@ int main()
     config.mRenderFrameRate = 60;
     config.mOnInitCallback  = [](Application* appPtr)
     {
-        printf("init %p\n", appPtr);
+        LOG_INFO("Game", "Init {0}", fmt::ptr(appPtr));
     };
     config.mOnUpdateCallback = []()
     {
-        printf("loop\n");
+        if (Application::GetInstance()->GetFrameCount() % 60 == 0)
+            LOG_INFO("Game", "Loop");
     };
 
     app.Init(config);
     app.Loop();
 
-    printf("hello, world\n");
     return 0;
 }

@@ -1,18 +1,19 @@
-set(HEADERS
+add_library(Application
     Application.h
-)
-
-set(SOURCES
     Application.cpp
 )
 
-source_group(Application FILES ${HEADERS} ${SOURCES})
-
-add_library(Application
-	${HEADERS}
-	${SOURCES}
+target_precompile_headers(Application
+	PRIVATE 
+	${COMMON_HEADERS}
 )
 
-target_precompile_headers(Application
-	PRIVATE ${COMMON_HEADERS}
+target_include_directories(Application
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..
+)
+
+target_link_libraries(Application
+	Common
+	Log
 )

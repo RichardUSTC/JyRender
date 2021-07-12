@@ -1,19 +1,10 @@
-set(HEADERS
+add_library(Common
     Ref.h
 	Time.h
-)
-
-set(SOURCES
     Common.cpp
 )
 
-source_group(Common FILES ${HEADERS} ${SOURCES})
-
-add_library(Common
-	${HEADERS}
-	${SOURCES}
-)
-
-target_precompile_headers(Common
-	PRIVATE ${COMMON_HEADERS}
+target_include_directories(Common
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..
 )
