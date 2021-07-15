@@ -7,6 +7,7 @@ endif()
 
 include(FetchContent)
 
+## spdlog
 FetchContent_Declare(
     spdlog
     GIT_REPOSITORY https://github.com/gabime/spdlog.git
@@ -16,3 +17,6 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(spdlog)
+
+## OpenGL ES
+include(glad)
