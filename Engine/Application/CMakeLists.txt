@@ -1,6 +1,15 @@
+if(WIN32)
+	set(PLATFORM_RELATED_SOURCE
+		Win32/Window.cpp
+	)
+endif()
+
 add_library(Application
     Application.h
     Application.cpp
+	Window.h
+	Window.cpp
+	${PLATFORM_RELATED_SOURCE}
 )
 
 target_precompile_headers(Application
