@@ -1,6 +1,7 @@
 add_library(Common
     Ref.h
 	Time.h
+	Vector.h
     Common.cpp
 )
 
