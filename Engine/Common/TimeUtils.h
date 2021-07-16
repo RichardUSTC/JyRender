@@ -1,11 +1,7 @@
-﻿// Create: 2021-07-12 9:14.
-// Copyright reserved to Li Bin(richardustc@163.com)
-
-#pragma once
+﻿#pragma once
 
 #include <chrono>
 #include <thread>
-#include <chrono>
 
 using TimePoint = std::chrono::time_point<std::chrono::steady_clock>;
 using Duration = std::chrono::nanoseconds;

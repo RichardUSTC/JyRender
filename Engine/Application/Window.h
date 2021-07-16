@@ -14,8 +14,12 @@ class Window: public Ref
 {
 public:
 	void Init(const WindowConfig& config);
+
+	void OnUpdate();
+
+	void* GetNativeWindow() const { return mNativeWindow; }
 	
-	~Window() override;
+	void Destroy() override;
 private:
-	uint64_t mNativeWindow {0};
+	void* mNativeWindow {nullptr};
 };

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(Game)
 
-set(CMAKE_UNITY_BUILD ON)
+set(CMAKE_UNITY_BUILD OFF)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

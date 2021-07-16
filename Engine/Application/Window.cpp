@@ -1,8 +1,9 @@
 #include "Window.h"
 #include "Log/Log.h"
 
-uint64_t CreateNativeWindow(const WindowConfig& config);
-void DestroyNativeWindow(uint64_t nativeWindow);
+void* CreateNativeWindow(const WindowConfig& config);
+void NativeWindowOnUpdate(void* nativeWindow);
+void DestroyNativeWindow(void* nativeWindow);
 
 void Window::Init(const WindowConfig& config)
 {
@@ -10,8 +11,17 @@ void Window::Init(const WindowConfig& config)
 	mNativeWindow = CreateNativeWindow(config);
 }
 
-Window::~Window()
+void Window::OnUpdate()
+{
+	LOG_ASSERT_MSG(mNativeWindow, "Window", "Window::mNativeWindow is not initialized");
+	NativeWindowOnUpdate(mNativeWindow);
+}
+
+void Window::Destroy()
 {
 	if (mNativeWindow)
+	{
 		DestroyNativeWindow(mNativeWindow);
+		mNativeWindow = nullptr;
+	}
 }

@@ -1,5 +1,4 @@
 #include "Application.h"
-#include "Common/Time.h"
 #include "Log/Log.h"
 #include <cassert>
 
@@ -27,14 +26,18 @@ void Application::Init(const ApplicationConfig& config)
 
 void Application::Loop()
 {
+    LOG_ASSERT_MSG(mOnUpdateCallback, "Application", "Application::mOnUpdateCallback is not set");
+    LOG_ASSERT_MSG(mWindow.Get(), "Application", "Application::mWindow is not initialized");
+	
     const Duration frameDuration = FrameDuration(mLogicFrameRate);
     while (mRunning)
     {
-        TimePoint now = GetNow();
-        if (mOnUpdateCallback)
-            mOnUpdateCallback();
+        mFrameStartTime = GetNow();
 
-        SleepUntil(now + frameDuration);
+        mWindow.Get()->OnUpdate();
+        mOnUpdateCallback();
+
+        SleepUntil(mFrameStartTime + frameDuration);
         mFrameCount++;
     }
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <atomic>
 #include <cstdint>
 #include <cassert>
@@ -24,12 +25,12 @@ public:
         return mRefCount.load();
     }
 
-private:
     virtual ~Ref()
     {
         assert(mRefCount.load() == 0);
     }
 
+private:
     std::atomic_uint64_t mRefCount{0};
 };
 
@@ -37,6 +38,8 @@ template <typename T>
 class OwnerPtr
 {
 public:
+	OwnerPtr() : mPtr(nullptr) {}
+	
     OwnerPtr(T* ptr) : mPtr(ptr)
     {
         static_assert(std::is_base_of<Ref, T>::value, "T should inherit from `Ref'.");
@@ -71,6 +74,8 @@ public:
         ptr.mPtr = nullptr;
         return *this;
     }
+
+    T* Get() { return mPtr; }
 
     ~OwnerPtr()
     {
