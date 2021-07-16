@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include "Window.h"
 
 class Application;
 
@@ -37,6 +38,7 @@ private:
     uint32_t         mRenderFrameRate{60};
     uint64_t         mFrameCount{0};
     OnUpdateCallback mOnUpdateCallback{nullptr};
-
+    Window*          mWindow;
+    
     static Application* sInstance;
 };

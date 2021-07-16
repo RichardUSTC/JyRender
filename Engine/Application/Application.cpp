@@ -2,7 +2,6 @@
 #include "Common/Time.h"
 #include "Log/Log.h"
 #include <cassert>
-#include <csignal>
 
 Application* Application::sInstance = nullptr;
 

@@ -25,7 +25,7 @@ public:
     }
 
 private:
-    ~Ref()
+    virtual ~Ref()
     {
         assert(mRefCount.load() == 0);
     }

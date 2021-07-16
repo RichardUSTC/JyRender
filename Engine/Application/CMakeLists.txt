@@ -1,6 +1,6 @@
 if(WIN32)
 	set(PLATFORM_RELATED_SOURCE
-		Win32/Window.cpp
+		Win32/WindowWin32.cpp
 	)
 endif()
 
